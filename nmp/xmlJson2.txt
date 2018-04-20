@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="GBK" ?><xmlMobile>
+<retCode>0000</retCode>
+<retMsg>交易成功</retMsg>
+<Items><Item>
+<SerialNo>8085103035556969</SerialNo>
+<OrderNo>018085103035556969</OrderNo>
+<BankName>中国邮政储蓄银行</BankName>
+</Item>
+</Items>
+</xmlMobile>
