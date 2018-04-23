@@ -10,6 +10,7 @@
 		253997B02069D1A400AF969E /* RCTXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 253997AC2069D1A400AF969E /* RCTXMLReader.m */; };
 		253997B22069D1E100AF969E /* xmlJson.txt in Resources */ = {isa = PBXBuildFile; fileRef = 253997B12069D1E100AF969E /* xmlJson.txt */; };
 		253997B42069E73600AF969E /* xmlJson2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 253997B32069E73600AF969E /* xmlJson2.txt */; };
+		2596DD33208D71B90047EBA1 /* longText.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2596DD32208D71B90047EBA1 /* longText.txt */; };
 		25B2ED411F8F468B003707E1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2ED401F8F468B003707E1 /* AppDelegate.m */; };
 		25B2ED441F8F468B003707E1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2ED431F8F468B003707E1 /* ViewController.m */; };
 		25B2ED471F8F468B003707E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25B2ED451F8F468B003707E1 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 		253997AD2069D1A400AF969E /* RCTXMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTXMLReader.h; sourceTree = "<group>"; };
 		253997B12069D1E100AF969E /* xmlJson.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = xmlJson.txt; sourceTree = "<group>"; };
 		253997B32069E73600AF969E /* xmlJson2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = xmlJson2.txt; sourceTree = "<group>"; };
+		2596DD32208D71B90047EBA1 /* longText.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = longText.txt; sourceTree = "<group>"; };
 		25B2ED3C1F8F468B003707E1 /* nmp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nmp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25B2ED3F1F8F468B003707E1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		25B2ED401F8F468B003707E1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				25DBEB60208725920049DC8D /* Solution.swift */,
 				25DBEB5F208725910049DC8D /* nmp-Bridging-Header.h */,
 				25C6452420873E9C008BB555 /* ListNode.swift */,
+				2596DD32208D71B90047EBA1 /* longText.txt */,
 			);
 			path = nmp;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				253997B22069D1E100AF969E /* xmlJson.txt in Resources */,
+				2596DD33208D71B90047EBA1 /* longText.txt in Resources */,
 				25B2ED4C1F8F468B003707E1 /* LaunchScreen.storyboard in Resources */,
 				25B2ED491F8F468B003707E1 /* Assets.xcassets in Resources */,
 				25B2ED471F8F468B003707E1 /* Main.storyboard in Resources */,

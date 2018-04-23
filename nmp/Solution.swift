@@ -16,7 +16,7 @@ class Solution: NSObject {
             // 第二层遍历
             for bbb in aaa+1..<nums.count{
                 let temptarget = nums[aaa]+nums[bbb];
-                // 判断条件是够成了
+                // 判断条件是否成立
                 if(temptarget == target){
                     return [aaa,bbb];
                 }
@@ -123,21 +123,19 @@ class Solution: NSObject {
         }
         var map = [String:Int]()
         var res = 0,len = 0,start = 0,end = 0
-        while end < s.count {
-            let subIndex = s.index(s.startIndex, offsetBy: end)
-            let text = s[subIndex]
-            var repeatBool = false
+        let length = s.count
+        let statrtIndx = s.startIndex
+        
+        while end < length {
+            let text = s[statrtIndx.advanced(by: end)]
             
             if map.keys.contains(String(text)) && map[String(text)]! >= start{
                 start = map[String(text)]! + 1
-                repeatBool = true
             }
             len = end - start + 1
             map[String(text)] = end
             res = res > len ? res:len
-            if repeatBool{
-                
-            }
+            
             end += 1
 
         }
