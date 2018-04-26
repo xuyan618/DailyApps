@@ -23,43 +23,61 @@
 //    [self doCustomerMethond];
     
     // twoSum
-    NSArray *nums = @[@3,@2,@4];
-    NSInteger target = 6;
+//    NSArray *nums = @[@3,@2,@4];
+//    NSInteger target = 6;
     Solution *s = [[Solution alloc] init];
-    //twoSum
-    NSArray *result = [s twoSum:nums :target];
-    NSLog(@"%@",result);
-    
-    //addTwoNumbers
-    
-    ListNode *node1 = [[ListNode alloc] init:5];
-//    ListNode *node2 = [[ListNode alloc] init:4];
-//    node1.next = node2;
-//    ListNode *node3 = [[ListNode alloc] init:3];
-//    node2.next = node3;
-    
-    ListNode *node11 = [[ListNode alloc] init:5];
-//    ListNode *node12 = [[ListNode alloc] init:6];
-//    node11.next = node12;
-//    ListNode *node13 = [[ListNode alloc] init:4];
-//    node12.next = node13;
-    ListNode *resultNode = [s addTwoNumbers:node1 :node11];
-    NSLog(@"%@",resultNode);
+    NSLog(@"函数开始执行");
+//    //twoSum
+//    NSArray *result = [s twoSum:nums :target];
+//    NSLog(@"%@",result);
+//
+//    //addTwoNumbers
+//
+//    ListNode *node1 = [[ListNode alloc] init:5];
+////    ListNode *node2 = [[ListNode alloc] init:4];
+////    node1.next = node2;
+////    ListNode *node3 = [[ListNode alloc] init:3];
+////    node2.next = node3;
+//
+//    ListNode *node11 = [[ListNode alloc] init:5];
+////    ListNode *node12 = [[ListNode alloc] init:6];
+////    node11.next = node12;
+////    ListNode *node13 = [[ListNode alloc] init:4];
+////    node12.next = node13;
+//    ListNode *resultNode = [s addTwoNumbers:node1 :node11];
+//    NSLog(@"%@",resultNode);
 //    NSInteger length1 = [s lengthOfLongestSubstring:@"abcabcbb"];
-//    NSLog(@"%zd",length1);
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSTimeInterval starttimeInterval = [[NSDate date] timeIntervalSince1970];
-        
-        NSLog(@"开始时间：%.0f",starttimeInterval);
-        NSString *charFile = [[NSBundle mainBundle] pathForResource:@"longText" ofType:@"txt"];
-        NSString *orignString = [[NSString alloc]initWithContentsOfFile:charFile encoding:NSUTF8StringEncoding error:nil];
-        NSInteger length = [s lengthOfLongestSubstring:orignString];
-        NSLog(@"%zd",length);
-        NSTimeInterval endtimeInterval = [[NSDate date] timeIntervalSince1970];
-        NSLog(@"结束时间：%.0f",endtimeInterval);
-        NSLog(@"总耗时：%.0f",endtimeInterval - starttimeInterval);
 
-    });
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        NSTimeInterval starttimeInterval = [[NSDate date] timeIntervalSince1970];
+//
+//        NSLog(@"开始时间：%.0f",starttimeInterval);
+//        NSString *charFile = [[NSBundle mainBundle] pathForResource:@"longText" ofType:@"txt"];
+//        NSString *orignString = [[NSString alloc]initWithContentsOfFile:charFile encoding:NSUTF8StringEncoding error:nil];
+//        NSInteger length = [s lengthOfLongestSubstring:orignString];
+//        NSLog(@"%zd",length);
+//        NSTimeInterval endtimeInterval = [[NSDate date] timeIntervalSince1970];
+//        NSLog(@"结束时间：%.0f",endtimeInterval);
+//        NSLog(@"总耗时：%.0f",endtimeInterval - starttimeInterval);
+//    });
+    // findMedianSortedArrays
+    
+//    double median = [s findMedianSortedArrays:@[@1,@2] :@[@3,@4]];
+//    NSLog(@"%f",median);
+
+    // longestPalindrome
+//    NSString *palindrome = [s longestPalindrome:@"cbbd"];
+//    NSLog(@"%@",palindrome);
+    
+    // reserve
+//    NSInteger reserve = [s reverse:-1534];
+//    NSLog(@"%ld",(long)reserve);
+    // convert
+//    NSString *convert = [s convert2:@"PAYPALISHIRING" :3];
+//    NSLog(@"%@",convert);
+
+    NSInteger atio = [s myAtoi:@"   -42"];
+    NSLog(@"%ld",(long)atio);
     return YES;
 }
 

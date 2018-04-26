@@ -9,6 +9,11 @@
 import UIKit
 
 class Solution: NSObject {
+    
+    var max = 0
+    var longestPalindrom = ""
+    
+    
     // 1. 两数之和
     func twoSum(_ nums:[Int],_ target:Int) -> [Int] {
         // 第一层遍历
@@ -145,5 +150,335 @@ class Solution: NSObject {
     // 3. 无重复字符的最长子串
     func lengthOfLongestSubstring(_ s: String) -> Int {
         return self.lengthOfLongestSubstringMethod2(s)
+    }
+    // 4.两个排序数组的中位数
+    func findMedianSortedArrays(_ nums1: [Int], _ nums2: [Int]) -> Double {
+        let sizeA = nums1.count, sizeB = nums2.count;
+        if (sizeA <= 0 && sizeB <= 0) {
+            return 0;
+        }
+        
+        let total = sizeA + sizeB;
+        if (total % 2 == 1) {
+            return findKth(nums1, 0, nums2, 0, total / 2 + 1);
+        }
+        else {
+            return (findKth(nums1, 0, nums2, 0, total / 2) + findKth(nums1, 0, nums2, 0, total / 2 + 1)) / 2;
+        }
+    }
+    
+    func findKth(_ nums1:[Int], _ i:Int, _ nums2:[Int],_ j:Int,_ k:Int)->Double {
+        // 首先需要让数组1的长度小于或等于数组2的长度
+        if (nums1.count - i > nums2.count - j) {
+            return findKth(nums2, j, nums1, i, k);
+        }
+        // 判断小的数组是否为空，为空的话，直接在另一个数组找第K个即可
+        if (nums1.count == i) {
+            return Double(nums2[j + k - 1]);
+        }
+        // 当K = 1时，表示我们要找第一个元素，只要比较两个数组的第一个元素，返回较小的那个即可
+        if (k == 1) {
+            
+            return (nums1[i] < nums2[j] ? Double(nums1[i]):Double(nums2[j]));
+        }
+    
+        let pa = min(i + k / 2, Int(nums1.count)), pb = j + k - pa + i;
+    
+        if (nums1[pa - 1] < nums2[pb - 1]) {
+            return findKth(nums1, pa, nums2, j, k - pa + i);
+        }
+        else if (nums1[pa - 1] > nums2[pb - 1]) {
+            return findKth(nums1, i, nums2, pb, k - pb + j);
+        }
+        else {
+            return Double(nums1[pa - 1]);
+        }
+    }
+    // 4.最长回文子串
+    func longestPalindrome(_ s: String) -> String {
+        return longestPalindrome2(s)
+    }
+    func longestPalindrome2(_ s: String) -> String {
+        guard s.count > 1 else {
+            return s
+        }
+        
+        var maxLength = 1
+        var maxStrIndex = 0
+        var str = String()
+        str += "$"
+        for i in s {
+            str += "#"
+            str.append(i)
+        }
+        str += "#"
+        var sArray = Array(str)
+        let length = str.count
+        
+        var p = Array.init(repeating: 0, count: length)
+        var id = 0
+        var mx = 0
+        for i in 1 ..< length {
+            if mx > i {
+                p[i] = min(mx - i, p[2 * id - i])
+            } else {
+                p[i] = 1
+            }
+            while p[i] + i < sArray.count && sArray[i + p[i]] == sArray[i - p[i]] {
+                p[i] += 1
+            }
+            if p[i] + i > mx {
+                mx = p[i] + i
+                id = i
+            }
+            if p[i] > maxLength {
+                maxLength = p[i]
+                maxStrIndex = i
+            }
+        }
+        
+        let starindex = s.index(s.startIndex, offsetBy: maxStrIndex / 2 - (maxLength) / 2)
+        let endIndex = s.index(starindex, offsetBy: maxLength - 1)
+        return String(s[starindex ..< endIndex])
+    }
+    
+    func longestPalindrome1(_ s:String) -> String {
+        if s.isEmpty || s.count == 0 {
+            return ""
+        }
+        let lenght = s.count
+
+        for start in 0..<lenght {
+            checkPalindromeExpand(s, start, start)
+            checkPalindromeExpand(s, start, start + 1)
+        }
+        return longestPalindrom
+    }
+    
+    func checkPalindromeExpand(_ s:String, _ lowT:Int, _ hightT:Int) -> Void {
+        var low = lowT,hight = hightT
+        
+        let lenght = s.count
+        let statrtIndx = s.startIndex
+
+        while low >= 0 && hight < lenght {
+            let leftText = s[statrtIndx.advanced(by: low)]
+            let rightText = s[statrtIndx.advanced(by: hight)]
+            if leftText == rightText {
+                if hight - low + 1 > max {
+                    max = hight - low + 1
+                    longestPalindrom = String(s[statrtIndx.advanced(by: low)...statrtIndx.advanced(by: hight)])
+                }
+                low -= 1
+                hight += 1
+            }else{
+                return
+            }
+        }
+    }
+    // 复杂度为O(n^3)
+    func quickLongestPalindrome(_ s:String) -> String {
+        if s.isEmpty || s.count == 0 {
+            return ""
+        }
+        var res = ""
+        let length = s.count
+        let statrtIndx = s.startIndex
+        for start in 0..<length {
+            for end in start..<length{
+                if end - start >= res.count {
+                    let subString = s[statrtIndx.advanced(by: start)...statrtIndx.advanced(by: end)]
+                    if isPalinadrom(String(subString)) {
+                        res = String(subString)
+                    }
+                }
+            }
+        }
+        return res
+    }
+    
+    func isPalinadrom(_ s:String) -> Bool {
+        var isPalinadrom = true
+        
+        let statrtIndx = s.startIndex
+        
+        var left = 0,right = s.count - 1
+        while left <= right {
+            let leftText = s[statrtIndx.advanced(by: left)]
+            let rightText = s[statrtIndx.advanced(by: right)]
+            if leftText != rightText {
+                isPalinadrom = false
+                break
+            }
+            left += 1
+            right -= 1
+        }
+        return isPalinadrom
+    }
+    //7、反转整数
+    func reverse(_ x: Int) -> Int {        
+        
+        let str = String(abs(x))
+        let reversedStr = String(str.reversed());
+        let res = Int(reversedStr)!
+        if res > 1<<31 {
+            return 0
+        }
+        if x < 0 {
+            return  -Int(reversedStr)!
+        }else{
+            return  Int(reversedStr)!
+        }
+    }
+    // 6、Z子型
+    func convert(_ s: String, _ numRows: Int) -> String {
+        
+        guard s.count > 2 && numRows > 1 else {
+            return s
+        }
+        // 三部分在存储数据,构造二维数组
+        var tempArr = Array<Array<String>>()
+        let startIndex = s.startIndex
+        let strCount = s.count
+        let rowCount = 2 * numRows - 2
+        var allColum = (strCount / rowCount) * (numRows - 1) + (strCount % rowCount)%(numRows - 1)
+        allColum = strCount < rowCount ? (strCount/numRows + strCount % numRows) : allColum
+
+        for i in 0..<allColum+1 {
+            var tempRow = Array<String>()
+            for j in 0..<numRows {
+                if i % (numRows - 1) == 0{
+                    let offset = i / (numRows - 1) * (2 * numRows - 2) + (i % (numRows - 1)) + j;
+                    if (offset < s.count) {
+                        tempRow.append(String(s[startIndex.advanced(by:offset)]))
+                    }else{
+                        tempRow.append("")
+                    }
+                }else if (i + j)%(numRows - 1) == 0{
+                    let offset = (i + j)/(numRows - 1) * numRows + ((i + j)/(numRows - 1) - 1) * (numRows - 2) + (i - 1) % (numRows - 1)
+                    
+                    if (offset < s.count) {
+                        tempRow.append(String(s[startIndex.advanced(by: offset)]))
+                    }else{
+                        tempRow.append("")
+                    }
+                }else{
+                    tempRow.append("")
+                }
+            }
+            tempArr.insert(tempRow, at: i)
+        }
+        var res = ""
+        
+        for ii in 0..<numRows {
+            for tempRow in tempArr{
+                res += tempRow[ii]
+            }
+        }
+        return res;
+    }
+    
+    // 快速遍历
+    func convert2(_ s: String, _ numRows: Int) -> String {
+        guard numRows >= 2 else {
+            return s
+        }
+        
+        let chars = [Character](s.characters)
+        let charCount = chars.count
+        
+        let loop = numRows + (numRows - 2)
+        var result = ""
+        for rowIndex in 0 ..< numRows {
+            var row = ""
+            for num in stride(from:rowIndex, to:charCount, by: loop) {
+                row.append(chars[num])
+                
+                // not first row, not last row
+                if rowIndex > 0 && rowIndex < numRows - 1 {
+                    let next = num + (numRows - rowIndex - 1) * 2
+                    
+                    if next < charCount {
+                        row.append(chars[next])
+                    }
+                }
+            }
+            
+            result.append(row)
+        }
+        
+        return result
+    }
+    
+    func myAtoi(_ str: String) -> Int {
+        let tempStr = str.trimmingCharacters(in: .whitespaces)
+        guard !tempStr.isEmpty else {
+            return 0
+        }
+        let chars = [Character](tempStr.characters)
+
+        // 第一个是字母，返回0
+        
+        let firstCharacter = chars[0]
+        for temp in (firstCharacter.unicodeScalars) {
+            if CharacterSet.letters.contains(temp) {
+                return 0
+            }
+        }
+        if firstCharacter == "+" || firstCharacter == "-"{
+            if(chars.count > 1){
+                // 判断后面是否为数字
+                var isDecimal:Bool = false
+                
+                for temp in (chars[1].unicodeScalars) {
+                    if CharacterSet.decimalDigits.contains(temp) {
+                        isDecimal = true
+                        break
+                    }
+                }
+                if isDecimal {
+                    return cal(tempStr)
+                }
+            }else{
+                return 0
+            }
+        }
+        var isDecimal:Bool = false
+        
+        for temp in (firstCharacter.unicodeScalars) {
+            if CharacterSet.decimalDigits.contains(temp) {
+                isDecimal = true
+                break
+            }
+        }
+        if isDecimal {
+            return cal(tempStr)
+        }
+        return 0
+    }
+
+    func cal(_ str: String) -> Int {
+        let scanner = Scanner(string: str)
+        scanner.scanUpToCharacters(from: CharacterSet.decimalDigits, into: nil)
+        var number :Int = 0
+        scanner.scanInt(&number)
+        if number == 0 {
+            return 0
+        }
+        let numberIndex = str.range(of: "-")?.lowerBound
+        if numberIndex == str.startIndex {
+            if -number < Int32.min {
+                return -1<<31
+            }else{
+                return -number
+            }
+            
+        }else{
+            if number > Int32.max {
+                return 1<<31-1
+            }else{
+                return number
+            }
+        }
     }
 }
