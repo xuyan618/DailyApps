@@ -76,8 +76,13 @@
 //    NSString *convert = [s convert2:@"PAYPALISHIRING" :3];
 //    NSLog(@"%@",convert);
 
-    NSInteger atio = [s myAtoi:@"   -42"];
-    NSLog(@"%ld",(long)atio);
+//    NSInteger atio = [s myAtoi:@"   -42"];
+//    NSLog(@"%ld",(long)atio);
+//    BOOL isPali = [s isPalindrome:121];
+//    NSLog(@"%d",isPali);
+    
+    BOOL isMatch = [s isMatch:@"mississippi" :@"mis*is*p*."];
+    NSLog(@"%d",isMatch);
     return YES;
 }
 

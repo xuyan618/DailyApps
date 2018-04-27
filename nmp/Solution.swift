@@ -481,4 +481,92 @@ class Solution: NSObject {
             }
         }
     }
+    
+    // 9. 回文数
+    func isPalindrome(_ x: Int) -> Bool {
+        // 正数
+        guard x >= 0 else {
+            return false
+        }
+        var tempX = x
+        var newx = 0
+        while tempX > 0 {
+            newx = newx * 10 + tempX % 10
+            tempX /= 10
+        }
+        
+        return newx == x
+    }
+    //10. 正则表达式匹配
+    func isMatch(_ s: String, _ p: String) -> Bool {
+        
+        if s.isEmpty && p.isEmpty  {
+            return true
+        }
+        
+        let schars = [Character](s.characters)
+        let pchars = [Character](p.characters)
+        
+        let c0 = getChars(schars, 0),p0 = getChars(pchars, 0),p1 = getChars(pchars, 1);
+        
+        if (match(c0, p0) || p1 == "*") {
+            if (p1 != "*") {
+                if (s.isEmpty){
+                    return false
+                }
+                let subS = s.substring(from: s.startIndex.advanced(by: 1))
+                let subP = p.substring(from: p.startIndex.advanced(by: 1))
+                return isMatch(subS, subP);
+            }
+            // if p1 is *, * means 0 ~ n
+            var i = 0;
+            let subS = s.substring(from: s.startIndex)
+            let subP = p.substring(from: p.startIndex.advanced(by: 2))
+
+            var ret:Bool = isMatch(subS, subP); // try 0
+            if (ret) {
+                return ret;
+            }
+            while (i < schars.count && match(getChars(schars, i), p0)) {
+                let subS = s.substring(from: s.startIndex.advanced(by: i+1))
+                let subP = p.substring(from: p.startIndex.advanced(by: 2))
+
+                ret = isMatch(subS, subP); // try for every available position
+                if (ret){
+                    return ret;
+                }
+                i += 1;
+            }
+        }
+        
+        return false
+    }
+    
+    func match(_ a:Character, _ b:Character) -> Bool {
+        return a == b || b == "."
+    }
+    func getChars(_ s:[Character], _ index:Int) -> Character {
+        if s.count > index {
+            return s[index]
+        }
+        return Character.init(" ")
+    }
+    
+    // 11. 盛最多水的容器
+    func maxArea(_ height: [Int]) -> Int {
+        var maxArea = 0,left = 0,right = height.count - 1
+        
+        while left < right {
+            let minHeight = min(height[left], height[right])
+
+            maxArea = max(minHeight * (right - left), maxArea)
+            if height[left] == minHeight {
+                left += 1
+            } else {
+                right -= 1
+            }
+        }
+        return maxArea
+    }
+    
 }
