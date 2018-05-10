@@ -81,8 +81,17 @@
 //    BOOL isPali = [s isPalindrome:121];
 //    NSLog(@"%d",isPali);
     
-    BOOL isMatch = [s isMatch:@"mississippi" :@"mis*is*p*."];
-    NSLog(@"%d",isMatch);
+//    BOOL isMatch = [s isMatch:@"mississippi" :@"mis*is*p*."];
+//    NSLog(@"%d",isMatch);
+    
+    double pwoe = pow(123, 5);
+    double result = fmod(pwoe, 323);
+    
+    double pwoeD = pow(result, 29);
+    double resultD = fmod(pwoeD, 323);
+    
+    NSString *longSuffix = [s longestCommonPrefix:@[@"c",@"c"]];
+    NSLog(@"%@",longSuffix);
     return YES;
 }
 

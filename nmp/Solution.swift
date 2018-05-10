@@ -568,5 +568,46 @@ class Solution: NSObject {
         }
         return maxArea
     }
-    
+    // 14.最长功能子串
+    func longestCommonPrefix(_ strs: [String]) -> String {
+        
+        guard strs.count > 0 else {
+            return ""
+        }
+        guard strs.count > 1 else {
+            return strs[0]
+        }
+        let subStr = strs[0]
+        guard subStr.count > 0 else {
+            return ""
+        }
+        var prefix = ""
+        
+        for i in 1..<subStr.count + 1 {
+            guard subStr.count > 0 else {
+                break
+            }
+            var start = 0
+            let tempSub = subStr.substring(to: subStr.startIndex.advanced(by: i))
+            var stop = false
+            
+            while start < strs.count {
+                let tempStr = strs[start]
+                let hasSuff = tempStr.hasPrefix(tempSub)
+                if !hasSuff {
+                    stop = true
+                    break
+                }else{
+                    start += 1
+                }
+            }
+            if stop {
+                break
+            }else{
+                prefix = tempSub
+            }
+        }
+        
+        return prefix
+    }
 }

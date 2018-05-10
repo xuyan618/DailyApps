@@ -3,11 +3,14 @@
 
 target 'nmp' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-  # use_frameworks!
+  use_frameworks!
 
   # Pods for nmp
 pod 'GDataXMLNode2', '~> 2.0.1'
 pod 'AFNetworking'
 pod 'IQKeyboardManager'
 pod 'MJRefresh'
+pod 'Fabric'
+pod 'Crashlytics'
+pod 'KissXML'
 end
